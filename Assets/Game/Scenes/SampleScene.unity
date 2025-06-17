@@ -224,7 +224,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5296598e92f2dc14a80123929d42f326, type: 3}
+  m_Sprite: {fileID: 21300000, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -272,7 +272,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5772cab36e1cf674f90b18ca16a33692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilePrefab: {fileID: 1945426236402226962, guid: 4ba503615b2604c4097ee2505ab69800, type: 3}
+  tilePrefab: {fileID: 1945426236402226962, guid: 4ba503615b2604c4097ee2505ab69800,
+    type: 3}
 --- !u!114 &468490898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -976,8 +977,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 990258812}
+  m_Children: [{fileID: 990258812}]
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &990258811
