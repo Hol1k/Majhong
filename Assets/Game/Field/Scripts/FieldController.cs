@@ -14,7 +14,7 @@ namespace Game.Field.Scripts
     {
         private Tile.Factory _tileFactory;
         
-        public List<Tile> Tiles = new List<Tile>();
+        [SerializeField] public List<Tile> Tiles = new List<Tile>();
         [SerializeField] private int fieldSize = 21;
 
         [SerializeField] private int tilesPairsCount = 144;

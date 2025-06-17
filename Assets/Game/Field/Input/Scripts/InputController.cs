@@ -1,3 +1,4 @@
+using System.Linq;
 using Game.Field.Scripts;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -42,7 +43,34 @@ namespace Game.Field.Input.Scripts
             ClickBehavior();
         }
 
-        public void RegenerateField() => _fieldController.RegenerateTiles();
+        public void OnAutoStep()
+        {
+            Tile firstTile = null;
+            Tile secondTile = null;
+
+            do
+            {
+                var availableTiles = _fieldController.Tiles.Where(t => t.IsAvailable).ToList();
+                firstTile = availableTiles[Random.Range(0, availableTiles.Count)];
+
+                availableTiles = _fieldController.Tiles.Where(t => t.IsAvailable && firstTile.Name == t.Name).ToList();
+                availableTiles.Remove(firstTile);
+                
+                if (availableTiles.Count == 0)
+                    continue;
+                    
+                secondTile = availableTiles[Random.Range(0, availableTiles.Count)];
+            } while (secondTile == null);
+            
+            Destroy(firstTile);
+            Destroy(secondTile);
+            _chosenTile = null;
+            
+            if (_fieldController.Tiles.Count <= 2)
+                _fieldController.RegenerateTiles();
+        }
+
+        public void OnRegenerateField() => _fieldController.RegenerateTiles();
 
         private void ClickInput()
         {
@@ -98,6 +126,9 @@ namespace Game.Field.Input.Scripts
                         Destroy(clickedTile);
                         Destroy(_chosenTile);
                         _chosenTile = null;
+                        
+                        if (_fieldController.Tiles.Count <= 2)
+                            _fieldController.RegenerateTiles();
                     }
                     else
                     {
