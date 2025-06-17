@@ -11,15 +11,15 @@ namespace Game.Field.Scripts
         public int Z { get; private set; }
         
         public string Name { get; private set; }
-        
-        [SerializeField] private SpriteRenderer iconSpriteRenderer;
-        [SerializeField] private GameObject unactiveColorGameObject;
 
-        private bool _isAvailable;
+        public bool IsAvailable { get; private set; }
+        
+        [SerializeField] private SpriteRenderer backgroundSpriteRenderer;
+        [SerializeField] private SpriteRenderer iconSpriteRenderer;
 
         public void CheckIsAvailable(List<Tile> allTilesList)
         {
-            _isAvailable =
+            IsAvailable =
                 // If this tile hasn't neighbored tiles on the left and the right sides
                 !(allTilesList.Any(t => t.Y == Y && t.Z == Z && t.X == X - 1) && allTilesList.Any(t => t.Y == Y && t.Z == Z && t.X == X + 1)) &&
                 // If this tile hasn't any tile on the top
@@ -33,7 +33,9 @@ namespace Game.Field.Scripts
                 !allTilesList.Any(t => t.Z == Z + 1 && t.X == X && t.Y == Y + 1) &&
                 !allTilesList.Any(t => t.Z == Z + 1 && t.X == X + 1 && t.Y == Y + 1);
             
-            unactiveColorGameObject.SetActive(!_isAvailable);
+            backgroundSpriteRenderer.color =
+                iconSpriteRenderer.color =
+                    IsAvailable ? Color.white : Color.gray;
         }
 
         private void SetIcon(Sprite sprite)

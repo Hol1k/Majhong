@@ -13,7 +13,6 @@ namespace Game.Field.Scripts
     public class FieldController : MonoBehaviour
     {
         private Tile.Factory _tileFactory;
-        private Transform _tilesContainer;
         
         private List<Tile> _tiles =  new List<Tile>();
         [SerializeField] private int fieldSize = 21;
@@ -27,10 +26,9 @@ namespace Game.Field.Scripts
         private readonly Dictionary<string, Sprite> _tileIcons = new Dictionary<string, Sprite>();
 
         [Inject]
-        public void Construct(Tile.Factory tileFactory, Transform tilesContainer)
+        public void Construct(Tile.Factory tileFactory)
         {
             _tileFactory = tileFactory;
-            _tilesContainer = tilesContainer;
         }
 
         private void Awake()
@@ -68,7 +66,7 @@ namespace Game.Field.Scripts
 
                     var tile = _tileFactory.Create(xCord, yCord, zCord,fieldSize,
                         tileName, _tileIcons[tileName],
-                        _tilesContainer);
+                        transform);
                     
                     _tiles.Add(tile);
                 }
