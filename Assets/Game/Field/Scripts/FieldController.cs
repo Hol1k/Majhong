@@ -14,7 +14,7 @@ namespace Game.Field.Scripts
     {
         private Tile.Factory _tileFactory;
         
-        private List<Tile> _tiles =  new List<Tile>();
+        public List<Tile> Tiles = new List<Tile>();
         [SerializeField] private int fieldSize = 21;
 
         [SerializeField] private int tilesPairsCount = 144;
@@ -43,11 +43,10 @@ namespace Game.Field.Scripts
 
         public void RegenerateTiles()
         {
-            foreach (var tile in _tiles)
+            foreach (var tile in Tiles)
             {
                 Destroy(tile.gameObject);
             }
-            _tiles.Clear();
 
             for (int pair = 0; pair < tilesPairsCount; pair++)
             {
@@ -68,13 +67,13 @@ namespace Game.Field.Scripts
                         tileName, _tileIcons[tileName],
                         transform);
                     
-                    _tiles.Add(tile);
+                    Tiles.Add(tile);
                 }
             }
 
-            foreach (var tile in _tiles)
+            foreach (var tile in Tiles)
             {
-                tile.CheckIsAvailable(_tiles);
+                tile.CheckIsAvailable();
             }
         }
 
@@ -85,7 +84,7 @@ namespace Game.Field.Scripts
             bool isStageValid = true;
             while (isStageValid)
             {
-                var currStageTiles = _tiles.Where(t => t.Z == z).ToList();
+                var currStageTiles = Tiles.Where(t => t.Z == z).ToList();
                 
                 bool isPositionValid = !currStageTiles.Any(t =>
                     (t.X >= x - 1 && t.X <= x + 1) && (t.Y >= y - 1 && t.Y <= y + 1));
@@ -140,7 +139,7 @@ namespace Game.Field.Scripts
             return false;
         }
 
-        private void LoadTiles(Action onLoaded = null)
+        private void LoadTiles()
         {
             foreach (var tileSpriteAsset in tileSpritesAssets)
             {
