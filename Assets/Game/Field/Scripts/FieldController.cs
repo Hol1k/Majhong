@@ -73,6 +73,11 @@ namespace Game.Field.Scripts
                     _tiles.Add(tile);
                 }
             }
+
+            foreach (var tile in _tiles)
+            {
+                tile.CheckIsAvailable(_tiles);
+            }
         }
 
         private bool ValidateTileCords(int x, int y, out int zCord)

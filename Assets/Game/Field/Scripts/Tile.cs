@@ -1,5 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Game.Field.Scripts
 {
@@ -12,6 +13,28 @@ namespace Game.Field.Scripts
         public string Name { get; private set; }
         
         [SerializeField] private SpriteRenderer iconSpriteRenderer;
+        [SerializeField] private GameObject unactiveColorGameObject;
+
+        private bool _isAvailable;
+
+        public void CheckIsAvailable(List<Tile> allTilesList)
+        {
+            _isAvailable =
+                // If this tile hasn't neighbored tiles on the left and the right sides
+                !(allTilesList.Any(t => t.Y == Y && t.Z == Z && t.X == X - 1) && allTilesList.Any(t => t.Y == Y && t.Z == Z && t.X == X + 1)) &&
+                // If this tile hasn't any tile on the top
+                !allTilesList.Any(t => t.Z == Z + 1 && t.X == X - 1 && t.Y == Y - 1) &&
+                !allTilesList.Any(t => t.Z == Z + 1 && t.X == X && t.Y == Y - 1) &&
+                !allTilesList.Any(t => t.Z == Z + 1 && t.X == X + 1 && t.Y == Y - 1) &&
+                !allTilesList.Any(t => t.Z == Z + 1 && t.X == X - 1 && t.Y == Y) &&
+                !allTilesList.Any(t => t.Z == Z + 1 && t.X == X && t.Y == Y) &&
+                !allTilesList.Any(t => t.Z == Z + 1 && t.X == X + 1 && t.Y == Y) &&
+                !allTilesList.Any(t => t.Z == Z + 1 && t.X == X - 1 && t.Y == Y + 1) &&
+                !allTilesList.Any(t => t.Z == Z + 1 && t.X == X && t.Y == Y + 1) &&
+                !allTilesList.Any(t => t.Z == Z + 1 && t.X == X + 1 && t.Y == Y + 1);
+            
+            unactiveColorGameObject.SetActive(!_isAvailable);
+        }
 
         private void SetIcon(Sprite sprite)
         {
