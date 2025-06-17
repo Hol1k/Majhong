@@ -53,6 +53,11 @@ namespace Game.Field.Scripts
             Destroy(gameObject);
         }
 
+        public void SetSelected(bool isSelected)
+        {
+            backgroundSpriteRenderer.color = isSelected ? Color.green : Color.white;
+        }
+        
         public void CheckIsAvailable()
         {
             IsAvailable =

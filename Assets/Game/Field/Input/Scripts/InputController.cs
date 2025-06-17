@@ -105,6 +105,7 @@ namespace Game.Field.Input.Scripts
                 {
                     if (!clickedTile.IsAvailable)
                     {
+                        _chosenTile.SetSelected(false);
                         _chosenTile = null;
                         return;
                     }
@@ -112,11 +113,13 @@ namespace Game.Field.Input.Scripts
                     if (_chosenTile == null)
                     {
                         _chosenTile = clickedTile;
+                        _chosenTile.SetSelected(true);
                         return;
                     }
 
                     if (clickedTile == _chosenTile)
                     {
+                        _chosenTile.SetSelected(false);
                         _chosenTile = null;
                         return;
                     }
@@ -132,6 +135,7 @@ namespace Game.Field.Input.Scripts
                     }
                     else
                     {
+                        _chosenTile.SetSelected(false);
                         _chosenTile = null;
                     }
                 }
