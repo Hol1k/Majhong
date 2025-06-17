@@ -1,11 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Zenject;
 
 namespace Game.Field.Scripts
 {
     public partial class Tile : MonoBehaviour
     {
+        private InputController _inputController;
+        
         public int X { get; private set; }
         public int Y { get; private set; }
         public int Z { get; private set; }
@@ -16,6 +19,12 @@ namespace Game.Field.Scripts
         
         [SerializeField] private SpriteRenderer backgroundSpriteRenderer;
         [SerializeField] private SpriteRenderer iconSpriteRenderer;
+
+        [Inject]
+        private void Construct(InputController inputController)
+        {
+            _inputController = inputController;
+        }
 
         public void CheckIsAvailable(List<Tile> allTilesList)
         {

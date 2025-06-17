@@ -224,7 +224,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5296598e92f2dc14a80123929d42f326, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -253,6 +253,7 @@ GameObject:
   - component: {fileID: 468490899}
   - component: {fileID: 468490898}
   - component: {fileID: 468490897}
+  - component: {fileID: 468490900}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -272,8 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5772cab36e1cf674f90b18ca16a33692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilePrefab: {fileID: 1945426236402226962, guid: 4ba503615b2604c4097ee2505ab69800,
-    type: 3}
+  tilePrefab: {fileID: 1945426236402226962, guid: 4ba503615b2604c4097ee2505ab69800, type: 3}
 --- !u!114 &468490898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,6 +289,7 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 468490897}
+  - {fileID: 468490900}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -321,6 +322,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &468490900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468490896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dd532beae522db4e87d5aad858c65c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,7 +507,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 674790458}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 878405140}
+        m_TargetAssemblyTypeName: Game.Field.Scripts.InputController, Assembly-CSharp
+        m_MethodName: RegenerateField
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &674790458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -543,6 +568,7 @@ GameObject:
   m_Component:
   - component: {fileID: 878405139}
   - component: {fileID: 878405138}
+  - component: {fileID: 878405140}
   m_Layer: 0
   m_Name: Playing Field
   m_TagString: Untagged
@@ -977,9 +1003,22 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: [{fileID: 990258812}]
+  m_Children:
+  - {fileID: 990258812}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &878405140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878405137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2903a8da10ed3fc40ac2033be6e43416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &990258811
 GameObject:
   m_ObjectHideFlags: 0

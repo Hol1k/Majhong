@@ -41,7 +41,7 @@ namespace Game.Field.Scripts
             StartCoroutine(GenerateTilesAfterLoadSprites());
         }
 
-        private void RegenerateTiles()
+        public void RegenerateTiles()
         {
             foreach (var tile in _tiles)
             {
