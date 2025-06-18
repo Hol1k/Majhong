@@ -32,8 +32,8 @@ namespace Game.Field.Scripts
             _fieldController.Tiles.Remove(this);
             
             var tilesToCheckAvailability = _fieldController.Tiles.Where(t =>
-                (t.Z == Z && t.X == X - 2 && t.Y == Y) ||
-                (t.Z == Z && t.X == X + 2 && t.Y == Y) ||
+                (t.Z == Z && t.X == X - 2 && t.Y >= Y - 1 && t.Y <= Y + 1) ||
+                (t.Z == Z && t.X == X + 2 && t.Y >= Y - 1 && t.Y <= Y + 1) ||
                 (t.Z == Z - 1 && t.X == X - 1 && t.Y == Y - 1) ||
                 (t.Z == Z - 1 && t.X == X && t.Y == Y - 1) ||
                 (t.Z == Z - 1 && t.X == X + 1 && t.Y == Y - 1) ||
