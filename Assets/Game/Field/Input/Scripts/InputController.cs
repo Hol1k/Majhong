@@ -48,6 +48,7 @@ namespace Game.Field.Input.Scripts
             Tile firstTile = null;
             Tile secondTile = null;
 
+            int iterations = 0;
             do
             {
                 var availableTiles = _fieldController.Tiles.Where(t => t.IsAvailable).ToList();
@@ -60,7 +61,12 @@ namespace Game.Field.Input.Scripts
                     continue;
                     
                 secondTile = availableTiles[Random.Range(0, availableTiles.Count)];
-            } while (secondTile == null);
+            } while (secondTile == null && iterations++ < 1000);
+
+            if (iterations >= 1000)
+            {
+                return;
+            }
             
             Destroy(firstTile);
             Destroy(secondTile);
