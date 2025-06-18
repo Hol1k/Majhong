@@ -62,7 +62,8 @@ namespace Game.Field.Scripts
         {
             IsAvailable =
                 // If this tile hasn't neighbored tiles on the left and the right sides
-                !(_fieldController.Tiles.Any(t => t.Y == Y && t.Z == Z && t.X == X - 1) && _fieldController.Tiles.Any(t => t.Y == Y && t.Z == Z && t.X == X + 1)) &&
+                !(_fieldController.Tiles.Any(t => t.Y >= Y - 1 && t.Y <= Y + 1 && t.Z == Z && t.X == X - 2) &&
+                  _fieldController.Tiles.Any(t => t.Y >= Y - 1 && t.Y <= Y + 1 && t.Z == Z && t.X == X + 2)) &&
                 // If this tile hasn't any tile on the top
                 !_fieldController.Tiles.Any(t => t.Z == Z + 1 && t.X == X - 1 && t.Y == Y - 1) &&
                 !_fieldController.Tiles.Any(t => t.Z == Z + 1 && t.X == X && t.Y == Y - 1) &&
