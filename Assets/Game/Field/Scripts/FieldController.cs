@@ -47,6 +47,7 @@ namespace Game.Field.Scripts
             {
                 Destroy(tile.gameObject);
             }
+            Tiles.Clear();
 
             for (int pair = 0; pair < tilesPairsCount; pair++)
             {
